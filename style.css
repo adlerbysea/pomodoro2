@@ -21,6 +21,73 @@
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Tomato stem/leaves */
+.timer-display::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid #7cb342;
+    z-index: 1;
+}
+
+.timer-display::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background: #7cb342;
+    border-radius: 50px 50px 0 0;
+    z-index: 2;
+}
+
+/* Tomato leaves */
+.timer-display {
+    overflow: visible;
+}
+
+.timer-display .leaves {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 25px;
+    z-index: 3;
+}
+
+.timer-display .leaves::before,
+.timer-display .leaves::after {
+    content: '';
+    position: absolute;
+    background: #8bc34a;
+    border-radius: 0 15px 15px 0;
+}
+
+.timer-display .leaves::before {
+    width: 20px;
+    height: 15px;
+    left: 15px;
+    top: 5px;
+    transform: rotate(-30deg);
+}
+
+.timer-display .leaves::after {
+    width: 20px;
+    height: 15px;
+    right: 15px;
+    top: 5px;
+    transform: rotate(30deg);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -80,26 +147,38 @@ h1 {
 }
 
 .timer-display {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 50%, #e53935 100%);
+    border-radius: 50%;
+    width: 300px;
+    height: 280px;
+    margin: 0 auto 2rem;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid #d32f2f;
 }
 
 .time {
-    font-size: 4rem;
-    font-weight: 300;
+    font-size: 3rem;
+    font-weight: 700;
     font-family: 'SF Mono', Monaco, monospace;
-    color: var(--primary-color);
+    color: white;
     margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 4;
 }
 
 .session-type {
-    font-size: 1.2rem;
-    color: var(--secondary-color);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 4;
 }
 
 .controls {
@@ -254,8 +333,32 @@ input[type="checkbox"] {
         font-size: 1.5rem;
     }
     
+    .timer-display {
+        width: 250px;
+        height: 230px;
+    }
+    
     .time {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+    
+    .session-type {
+        font-size: 0.9rem;
+    }
+    
+    .timer-display .eyes {
+        top: 50px;
+        width: 100px;
+    }
+    
+    .timer-display .eyes::before,
+    .timer-display .eyes::after {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .timer-display .mouth {
+        bottom: 65px;
     }
     
     .controls {
@@ -277,18 +380,122 @@ input[type="checkbox"] {
 
 /* Animations */
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    }
+    50% { 
+        transform: scale(1.05); 
+        box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5);
+    }
+}
+
+@keyframes happy-bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
 }
 
 .timer-display.active {
     animation: pulse 2s infinite;
 }
 
+.timer-display.active .eyes {
+    animation: happy-bounce 1s infinite;
+}
+
+.timer-display.active .mouth {
+    animation: happy-bounce 1s infinite 0.2s;
+}
+
 .timer-display.break {
-    border: 3px solid var(--accent-color);
+    background: linear-gradient(135deg, #4dabf7 0%, #42a5f5 50%, #1e88e5 100%);
+    border-color: #1565c0;
 }
 
 .timer-display.break .time {
-    color: var(--accent-color);
+    color: white;
+}
+
+/* Kawaii eyes */
+.timer-display .eyes {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 40px;
+    z-index: 5;
+}
+
+.timer-display .eyes::before,
+.timer-display .eyes::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: white;
+    border-radius: 50%;
+    border: 3px solid #d32f2f;
+}
+
+.timer-display .eyes::before {
+    left: 20px;
+    box-shadow: inset 8px 8px 0 #8d4e85;
+}
+
+.timer-display .eyes::after {
+    right: 20px;
+    box-shadow: inset 8px 8px 0 #8d4e85;
+}
+
+/* Kawaii mouth */
+.timer-display .mouth {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    border-radius: 0 0 20px 20px;
+    background: #d32f2f;
+    z-index: 5;
+}
+
+/* Cheek blush */
+.timer-display .cheeks {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 30px;
+    z-index: 5;
+}
+
+.timer-display .cheeks::before,
+.timer-display .cheeks::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background: rgba(255, 182, 193, 0.6);
+    border-radius: 50%;
+}
+
+.timer-display .cheeks::before {
+    left: 25px;
+}
+
+.timer-display .cheeks::after {
+    right: 25px;
+}
+
+/* Highlight on tomato */
+.timer-display .highlight {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    width: 30px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    z-index: 4;
 } 
