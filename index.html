@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍅 Pomodoro Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍅 Pomodoro Timer</h1>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </header>
+
+        <main class="timer-section">
+            <div class="timer-display">
+                <div class="time" id="timeDisplay">25:00</div>
+                <div class="session-type" id="sessionType">Focus Time</div>
+            </div>
+
+            <div class="controls">
+                <button class="btn primary" id="startBtn">Start</button>
+                <button class="btn secondary" id="pauseBtn">Pause</button>
+                <button class="btn secondary" id="resetBtn">Reset</button>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </main>
+
+        <section class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="sessionsToday">0</span>
+                <span class="stat-label">Sessions Today</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="currentCycle">1</span>
+                <span class="stat-label">Current Cycle</span>
+            </div>
+        </section>
+
+        <section class="settings">
+            <details>
+                <summary>⚙️ Settings</summary>
+                <div class="settings-content">
+                    <div class="setting-item">
+                        <label for="focusTime">Focus Time (minutes)</label>
+                        <input type="number" id="focusTime" min="1" max="60" value="25">
+                    </div>
+                    <div class="setting-item">
+                        <label for="shortBreak">Short Break (minutes)</label>
+                        <input type="number" id="shortBreak" min="1" max="30" value="5">
+                    </div>
+                    <div class="setting-item">
+                        <label for="longBreak">Long Break (minutes)</label>
+                        <input type="number" id="longBreak" min="1" max="60" value="15">
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="soundEnabled" checked>
+                            Sound Notifications
+                        </label>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
